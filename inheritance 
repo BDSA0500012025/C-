@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Base Class (Parent)
+class Car {
+protected: // 'protected' allows child classes to access these variables
+    string brand;
+    string model;
+    int mileage;
+
+public:
+    Car(string b, string m, int mil) {
+        brand = b;
+        model = m;
+        [span_1](start_span)mileage = mil;[span_1](end_span)
+    }
+
+    void displayInfo() {
+        [span_2](start_span)cout << "Brand: " << brand << ", Model: " << model << ", Mileage: " << mileage << endl;[span_2](end_span)
+    }
+};
+
+// Derived Class (Child) inheriting from Car
+class ElectricCar : public Car {
+private:
+    int batteryCapacity;
+
+public:
+    // Constructor calls the parent constructor
+    ElectricCar(string b, string m, int mil, int battery) : Car(b, m, mil) {
+        batteryCapacity = battery;
+    }
+
+    void displayBattery() {
+        cout << "Battery Capacity: " << batteryCapacity << " kWh" << endl;
+    }
+};
+
+int main() {
+    // Create an object of the derived class
+    ElectricCar myTesla("Tesla", "Model 3", 12000, 75);
+
+    // Can use methods from the Parent class
+    myTesla.displayInfo(); 
+
+    // Can use methods from the Child class
+    myTesla.displayBattery();
+
+    return 0;
+}
