@@ -1,0 +1,102 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Vehicle {
+    private:
+    string brand;
+    int registrationNumber;
+    int year;
+    public:
+    // constuructor to initialize the values of the vehicle
+    Vehicle(string b, int r, int y) {
+        brand = b;
+        registrationNumber = r;
+        year = y;
+    }
+    virtual void displayfunction(){
+        cout << "Vehicle Details: " << endl;
+        //cout << "Brand: " << brand << endl;
+        //cout << "Registration Number: " << registrationNumber << endl;
+        //cout << "Year: " << year << endl;
+    }
+    // function to set the values of the vehicle
+    void setbrand(string b) {
+        brand = b;
+    }
+    void setregistrationNumber(int r) {
+        registrationNumber = r;
+    }
+    void setyear(int y) {
+        year = y;
+    }
+    // function to get the values of the vehicle
+    string getbrand() {
+        return brand;
+    }
+    int getregistrationNumber() {
+        return registrationNumber;
+    }
+    int getyear() {
+        return year;
+    }
+};
+class Car : public Vehicle {
+    private:
+    int doorsNo;
+    public:
+    // constuructor to initialize the values of the car
+    Car(string b, int r, int y, int d): Vehicle(b, r, y) {
+        doorsNo = d;
+    }   
+    void displayfunction() override {
+    cout << "Car Details: " << endl;
+    //Vehicle::displayfunction();
+    cout << "Brand: " << getbrand() << endl;
+    cout << "Registration Number: " << getregistrationNumber() << endl;
+    cout << "Year: " << getyear() << endl;
+    cout << "Number of Doors: " << doorsNo << endl;
+}
+   
+};
+class Truck : public Vehicle {
+    private:
+    int loadCapacity;
+    public:
+    // constuructor to initialize the values of the truck
+    Truck(string b, int r, int y, int l): Vehicle(b, r, y) {
+        loadCapacity = l;
+    }
+    void displayfunction() override{
+    cout << "Truck details: " << endl;
+    //Vehicle::displayfunction();
+    cout << "Brand: " << getbrand() << endl;
+    cout << "Registration Number: " <<getregistrationNumber() << endl;
+    cout << "Year: " << getyear() << endl;
+    cout << "Load Capacity: " << loadCapacity << endl;
+}
+
+};
+int main() {
+    // function to input the values of the car
+cout << "Enter car details: " << endl;
+cout << "Brand: ";string brand;cin >> brand;
+cout << "Registration Number: ";int registrationNumber;cin >> registrationNumber;   
+cout << "Year: ";int year;cin >> year;
+cout << "Number of Doors: ";int doorsNo;cin >> doorsNo;
+// function to input the values of the truck
+cout << "Enter truck details: " << endl;
+cout << "Brand: ";string truckBrand;cin >> truckBrand;
+cout << "Registration Number: ";int truckRegistrationNumber;cin >> truckRegistrationNumber;
+cout << "Year: ";int truckYear;cin >> truckYear;
+cout << "Load Capacity: ";int loadCapacity;cin >> loadCapacity;
+
+    Vehicle* v1; 
+    Car car1(brand, registrationNumber, year, doorsNo);
+    Truck truck1(truckBrand, truckRegistrationNumber, truckYear, loadCapacity);
+    car1.displayfunction();
+    truck1.displayfunction();
+    v1 = &car1;
+    v1->displayfunction();
+    v1 = &truck1;
+    v1->displayfunction();
+}
